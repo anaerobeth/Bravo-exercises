@@ -1,0 +1,12 @@
+# validate input to be between 0-9
+
+
+# validate input to be characters included in an array
+array = [ 'A', 'B']
+
+
+# validate input to be a key in a hash
+hash = {'Joe' => 'plumber', 'Sue' => 'cook'}
+
+
+# validate input to be
