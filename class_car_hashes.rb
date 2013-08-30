@@ -17,7 +17,7 @@ class Car
         # de-duplicate
         @@make_map[make].uniq!
 
-      end
+       end
     end
 
     def available_makes
