@@ -19,7 +19,7 @@ class Student
 
   def get_name(item)
     name = item[0]
-    return name
+    #return name
   end
 
 end
@@ -31,9 +31,15 @@ class AssignmentGrade
 
   def get_grades(item)
     grades = [item[1], item[2], item[3], item[4], item[5]]
-    return grades
+    #return grades
   end
 
+  def average(grades)
+    average_grade = ''
+    total = grades.inject(:+)
+    average_grade = total.to_f / grades.length
+    return average_grade
+  end
 
 end
 
@@ -51,7 +57,9 @@ student_file.each do |record|
   student_records[name] =  grades
 end
 
-puts student_records
+#puts student_records
+#a = [10, 20, 30]
+#puts grade.average(a)
 
 
 
