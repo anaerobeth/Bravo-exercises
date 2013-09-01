@@ -53,7 +53,19 @@ class FinalGrade
         return 'F'
     end
   end
+
+  def write_grade(grade_summary)
+    File.open('class_record.txt', 'w') do |f|
+      f.puts grade_summary
+    end
+  end
 end
+
+# GradeSummary - an object that encapsulates the concept of the class' aggregate performance
+class GradeSummary
+
+end
+
 
 reader = GradeReader.new()
 student = Student.new()
@@ -77,7 +89,8 @@ a = [10, 20, 30]
 ave = grade.average(a)
 puts ave
 puts final_grade.get_letter_grade(ave)
-
+grade_summary = "Hello"
+final_grade.write_grade(grade_summary)
 
 
 
