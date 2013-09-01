@@ -24,12 +24,12 @@ end
 # AssignmentGrade - an object that encapsulates the concept of a given assignment grade
 class AssignmentGrade
   def get_grades(item)
-    grades = [item[1], item[2], item[3], item[4], item[5]]
+    grades = [item[1].to_f, item[2].to_f, item[3].to_f, item[4].to_f, item[5].to_f]
   end
 
  # calculate the average
   def average(grades)
-    average_grade = ''
+    average_grade = 0
     total = grades.inject(:+)
     average_grade = total.to_f / grades.length
     return average_grade
@@ -54,9 +54,9 @@ class FinalGrade
     end
   end
 
-  def write_grade(grade_summary)
-    File.open('class_record.txt', 'w') do |f|
-      f.puts grade_summary
+  def write_grade(summary)
+    File.open('class_record.csv', 'w') do |f|
+      f.puts summary
     end
   end
 end
@@ -72,10 +72,10 @@ student = Student.new()
 grade = AssignmentGrade.new()
 final_grade = FinalGrade.new()
 
-
 student_records = {}
 student_file = reader.read('student_grade_sample.csv')
 #puts student_file
+
 
 # build the student records array
 student_file.each do |record|
@@ -84,7 +84,17 @@ student_file.each do |record|
   student_records[name] =  grades
 end
 
-#puts student_records
+class_averages = {}
+grades = []
+
+student_records.each do |name, grades|
+  average = grade.average(grades)
+  class_averages[name] = average
+  puts "#{name}: #{grades}   #{average}"
+end
+
+
+#puts student_records SAMPLE DATA
 a = [10, 20, 30]
 ave = grade.average(a)
 puts ave
@@ -93,4 +103,5 @@ grade_summary = "Hello"
 final_grade.write_grade(grade_summary)
 
 
+#class_grades =
 
