@@ -6,7 +6,7 @@ class GradeReader
   student_file = []
   grades = []
     CSV.foreach(file) do |row|
-    student_file << row
+      student_file << row
     end
     return student_file
   end
@@ -55,7 +55,7 @@ class FinalGrade
   end
 
   def write_grade(summary)
-    File.open('class_record.csv', 'w') do |f|
+    File.open('class_record.csv', 'a') do |f|
       f.puts summary
     end
   end
@@ -85,23 +85,25 @@ student_file.each do |record|
 end
 
 class_averages = {}
-grades = []
+average_summary = []
 
 student_records.each do |name, grades|
   average = grade.average(grades)
   class_averages[name] = average
-  puts "#{name}: #{grades}   #{average}"
+  letter_grade = final_grade.get_letter_grade(average)
+  summary = "#{name}: #{grades}: #{average}: #{letter_grade}"
+  puts summary
+  final_grade.write_grade(summary)
+  average_summary << average
 end
 
-
-#puts student_records SAMPLE DATA
-a = [10, 20, 30]
-ave = grade.average(a)
-puts ave
-puts final_grade.get_letter_grade(ave)
-grade_summary = "Hello"
-final_grade.write_grade(grade_summary)
+puts average_summary.inspect
+class_statistics = {}
+class_statistics['average'] = grade.average(average_summary)
+class_statistics['minimum'] = average_summary.min
+class_statistics['maximum'] = average_summary.max
+  #:standard_deviation =
 
 
-#class_grades =
+puts class_statistics
 
