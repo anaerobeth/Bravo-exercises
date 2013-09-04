@@ -8,10 +8,15 @@ class PigLatinTranslation
 
   #provide the pig latin translation
   def translate
+    words
     words_array = []
     pig_latin_words_array = []
     @words_array.each do |word|
-      word += 'ay'
+      if starts_with_vowel?(word)
+        word += 'way'
+      else
+        word = word[1,-1]+ word[0] + 'ay'
+      end
       pig_latin_words_array << word
     end
     return pig_latin_words_array
@@ -35,7 +40,9 @@ class PigLatinTranslation
 end
 
 p = PigLatinTranslation.new('happy new year')
-
-puts p.starts_with_vowel?('happy')
-puts p.words
-puts p.translate
+#puts p.starts_with_vowel?('happy')
+array = p.translate
+array.each do |word|
+  print word + " "
+end
+puts
