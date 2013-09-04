@@ -1,13 +1,13 @@
 require 'CSV'
-
+require 'pry'
 # GradeReader - an object that is responsible for reading in grade data from a CSV.
 class GradeReader
   def read(file)
   student_file = []
-  grades = []
     CSV.foreach(file) do |row|
       student_file << row
     end
+    puts student_file
     return student_file
   end
 end
@@ -23,6 +23,7 @@ end
 
 # AssignmentGrade - an object that encapsulates the concept of a given assignment grade
 class AssignmentGrade
+  grades = []
   def get_grades(item)
     grades = [item[1].to_f, item[2].to_f, item[3].to_f, item[4].to_f, item[5].to_f]
   end
@@ -68,6 +69,8 @@ end
 
 
 reader = GradeReader.new()
+
+binding.pry
 student = Student.new()
 grade = AssignmentGrade.new()
 final_grade = FinalGrade.new()

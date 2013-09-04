@@ -31,12 +31,6 @@ class HomePurchaseOption
   #determine if the purchaser must pay insurance
   #If you have less than 20% of your property's value in equity, you typically have to pay mortgage insurance
   def pmi_required?
-    puts "Property value: #{property_value}"
-    foo = property_value - (selling_price - down_payment)
-    bar = property_value * 0.2
-    puts "foo: #{foo} bar: #{bar}"
-    ratio = foo / property_value
-    puts "ratio: #{ratio}"
     if property_value - (selling_price - down_payment) < property_value * 0.2
       return true
     else
