@@ -1,7 +1,5 @@
 class PigLatinTranslation
 
-
-
   def initialize(phrase)
     @phrase = phrase
   end
@@ -14,14 +12,17 @@ class PigLatinTranslation
     @words_array.each do |word|
       if starts_with_vowel?(word)
         word += 'way'
-
+      elsif !starts_with_vowel?(word[1..-1])
+        word = word[2..-1] + word[0] + word[1] + 'ay'
+      else
+        word = word[1..-1] + word[0] + 'ay'
       end
       pig_latin_words_array << word
     end
     return pig_latin_words_array
   end
 
-  #private
+  private
   #an array of words in the phrase
   def words
     @words_array = @phrase.split(' ')
@@ -38,8 +39,13 @@ class PigLatinTranslation
   end
 end
 
-p = PigLatinTranslation.new('happy new year')
-#puts p.starts_with_vowel?('happy')
+p = PigLatinTranslation.new('happy duck glove')
+array = p.translate
+array.each do |word|
+  print word + " "
+end
+puts
+p = PigLatinTranslation.new('egg inbox eight')
 array = p.translate
 array.each do |word|
   print word + " "
