@@ -14,8 +14,7 @@ class PigLatinTranslation
     @words_array.each do |word|
       if starts_with_vowel?(word)
         word += 'way'
-      else
-        word = word[1,-1]+ word[0] + 'ay'
+
       end
       pig_latin_words_array << word
     end
