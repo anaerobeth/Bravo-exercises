@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  reader: MyString
+  date: 2013-09-05 15:11:20
+  book_id: 1
+
+two:
+  reader: MyString
+  date: 2013-09-05 15:11:20
+  book_id: 1
