@@ -1,4 +1,6 @@
 Library::Application.routes.draw do
+  resources :categories
+
   resources :checkouts
 
   resources :books
