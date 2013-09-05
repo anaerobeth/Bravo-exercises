@@ -39,3 +39,55 @@ list_of_books.each do |attributes|
 
   book.save!
 end
+
+
+list_of_categories =
+[
+  {
+    description: 'adventure',
+    created_at: '2012,2,3',
+    updated_at: '2013,2,3',
+  },
+  {
+    description: 'drama',
+    created_at: '2002,2,3',
+    updated_at: '2010,2,3',
+  }
+]
+
+list_of_categories.each do |attributes|
+  category = Category.where({
+    description: attributes[:description],
+    created_at: attributes[:created_at],
+    updated_at: attributes[:updated_at],
+  }).first
+
+  if category.nil?
+    category = Category.new(attributes)
+  else
+    category.assign_attributes = attributes
+  end
+
+  category.save!
+end
+
+
+# list_of_categorizations = [
+#   {
+#     book_id: 1
+#     category_id: 1
+# },
+#   {
+#     book_id: 1
+#     category_id: 2
+# },
+#   {
+#     book_id: 2
+#     category_id: 3
+# },
+# ]
+#     book_id:
+#     category_id:
+
+#   end
+
