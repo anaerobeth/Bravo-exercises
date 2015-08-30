@@ -3,39 +3,39 @@ require 'CSV'
 class HomePurchaseOption
   attr_reader :address, :property_value, :selling_price, :down_payment
 
-  def initialize(address, property_value, selling_price, down_payment)
+  MORTGAGE_INSURANCE_RATE = 0.005
+  MORTGAGE_INSURANCE-THRESHOLD = 0.2
+
+ def initialize(address, property_value, selling_price, down_payment)
     @address = address
     @property_value = property_value
     @selling_price = selling_price
     @down_payment = down_payment
   end
 
-  #the amount of cash value you have in the home
-  #This would be difference in your property's value
-  #and your mortgage balance
+  # The amount of cash value you have in the home
+  # This would be difference in your property's value
+  # and your mortgage balance
   def equity_after_sale
     property_value - (selling_price - down_payment)
   end
 
-  #the amount of money you must borrow to purchase the home
+  # the amount of money you must borrow to purchase the home
   def required_mortgage
     selling_price - down_payment
   end
 
-  #how much your insurance cost will cost over `years` years
-  #Mortgage insurance is 0.5% per year of the total mortgage.
+  # How much your insurance cost will cost over `years` years
+  # Mortgage insurance is 0.5% per year of the total mortgage.
   def insurance_cost(years)
-    years * 0.005 * (selling_price - down_payment)
+    years * MORTGAGE_INSURANCE_RATE * required_mortgage
   end
 
-  #determine if the purchaser must pay insurance
-  #If you have less than 20% of your property's value in equity, you typically have to pay mortgage insurance
+  # Determine if the purchaser must pay insurance
+  # If you have less than 20% of your property's value in equity,
+  # you typically have to pay mortgage insurance
   def pmi_required?
-    if property_value - (selling_price - down_payment) < property_value * 0.2
-      return true
-    else
-      return false
-    end
+    equity_after_sale < property_value * MORTGAGE_INSURANCE-THRESHOLD
   end
 end
 
